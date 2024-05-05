@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="/home/style.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="shortcut icon" href="/static/assets/nguyencong_2023/images/favicon.png" type="image/x-icon">
     <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" defer></script>
@@ -13,6 +13,9 @@
 
 <body>
     <div class="container">
+        <div id="loading-container">
+            <div class="loading-spinner"></div>
+        </div>
         <div class="header-top">
             <div class="grid">
                 <div class="menu">
@@ -29,7 +32,7 @@
                         <li><i class='bx bxs-phone-call'></i>Khách Hàng Liên Hệ</li>
                         <li><i class='bx bx-news'></i>Tin Tức Công Nghệ</li>
                         <li><i class='bx bx-cart-download'></i>Giỏ Hàng</li>
-                        <li><i class='bx bxs-user-account'></i><a href="login.html">Tài khoản</a></li>
+                        <li><i class='bx bxs-user-account'></i><a href="/login/index.html">Tài khoản</a></li>
                     </ul>
                 </div>
             </div>
@@ -460,10 +463,56 @@
             </div>
         </div>
     </div>
-    <script src="count.js"></script>
+    <script src="/home/count.js"></script>
     <script>
     </script>
-    <script src="app.js"></script>
+    <script src="/home/app.js"></script>
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-analytics.js";
+ 
+ 
+        import { collection, doc, setDoc, getDoc } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore.js";
+        import { getFirestore } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore.js"
+        // TODO: Add SDKs for Firebase products that you want to use
+        // https://firebase.google.com/docs/web/setup#available-libraries
+     
+        // Your web app's Firebase configuration
+        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+        const firebaseConfig = {
+            apiKey: "AIzaSyA1c7ljLwUqWFYaCgsK1CIKHsQI8W_EeKo",
+            authDomain: "mindxproducts.firebaseapp.com",
+            projectId: "mindxproducts",
+            storageBucket: "mindxproducts.appspot.com",
+            messagingSenderId: "818842236240",
+            appId: "1:818842236240:web:75decce35c2d8eb9886855",
+            measurementId: "G-NVCE8KYHBN"
+        };
+     
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const analytics = getAnalytics(app);
+ 
+ 
+ 
+ 
+ 
+ 
+        // get users
+        const db = getFirestore(app);
+        const docRef = doc(db, "users", "g4ZpXgXKFX1NhYwVVoqQ");
+        const docSnap = await getDoc(docRef);
+ 
+ 
+        if (docSnap.exists()) {
+        console.log("Document data:", docSnap.data());
+        } else {
+        // docSnap.data() will be undefined in this case
+        console.log("No such document!");
+        }
+       
+      </script>
 </body>
 
 </html>
